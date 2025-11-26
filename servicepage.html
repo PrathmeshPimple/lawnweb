@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sai Gajanan Lawns - Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f6eddc;
+      color: #5e451f;
+    }
+    header {
+      background: #21243a;
+      color: #ead197;
+      padding: 15px 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3.5px solid #bfa06f;
+      box-shadow: 0 4px 18px -8px #bfa06f70;
+      font-family: 'Cinzel', serif;
+    }
+    .site-title {
+      font-weight: 700;
+      font-size: 1.8em;
+      color: #bfa06f;
+      letter-spacing: 1.2px;
+      margin: 0;
+      text-shadow: 0 0 10px #dfd6c5, 0 1.5px 0 #715b2c55;
+    }
+    nav a {
+      color: #ead197;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #bfa06f;
+      text-shadow: 0 0 8px #dfd6c5bb;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto 4rem;
+      padding: 0 2rem;
+    }
+    h1, h2, h3 {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #715528;
+      text-shadow: 0 1.5px 0 #bfa06f19;
+    }
+    section {
+      margin-bottom: 3rem;
+      background: #fcf7ee;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 38px -20px #bfa06f70;
+      border: 0.5px solid #bfa06f26;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+      color: #5e451f;
+    }
+    /* Gallery styling */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    .gallery img {
+      border-radius: 12px;
+      width: calc(33.333% - 8px);
+      box-shadow: 0 3px 15px #bfa06f44;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 25px #bfa06f88;
+    }
+    /* Responsive */
+    @media (max-width: 760px) {
+      .gallery img {
+        width: calc(50% - 8px);
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="site-title">Sai Gajanan Lawns &amp; Banquet - Services</span>
+    <nav>
+      <a href="index.html#top">Home</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#booking">Booking</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html">Back to Main Site</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="weddings">
+      <h2>Weddings & Receptions</h2>
+      <p>
+        Celebrate your special day in a magical setting. Our wedding and reception services offer premium lawn, banquet options, elegant décor, and professional planning to create an unforgettable experience.
+      </p>
+    </section>
+
+    <section id="birthdays">
+      <h2>Birthday & Celebrations</h2>
+      <p>
+        From intimate birthday parties to grand celebrations, we customize every detail to your liking. Enjoy spacious lawns and festive atmospheres perfect for friends and family gatherings.
+      </p>
+    </section>
+
+    <section id="corporate">
+      <h2>Corporate Events</h2>
+      <p>
+        Host your corporate meetings, conferences, and team outings in a professional yet inviting environment with top-notch amenities and catering services.
+      </p>
+    </section>
+
+    <section id="receptions">
+      <h2>Parties & Receptions</h2>
+      <p>
+        Our banquets and lawns are ideal venues for receptions and parties. We offer flexible packages that include decoration, catering, and entertainment arrangements.
+      </p>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="gallery1.jpg" alt="Event Image 1" />
+        <img src="gallery2.jpg" alt="Event Image 2" />
+        <img src="gallery3.jpg" alt="Event Image 3" />
+        <img src="gallery4.jpg" alt="Event Image 4" />
+        <img src="gallery5.jpg" alt="Event Image 5" />
+        <img src="gallery6.jpg" alt="Event Image 6" />
+      </div>
+    </section>
+  </main>
+</body>
+</html>

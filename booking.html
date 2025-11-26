@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Your Event - Sai Gajanan Lawns</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    /* Basic reset and styling */
+    body, html {
+      margin: 0; padding: 0; min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f6eddc;
+      color: #5e451f;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #21243a;
+      padding: 18px 38px;
+      color: #f2d08c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Cinzel', serif;
+      border-bottom: 3px solid #bfa06f;
+      box-shadow: 0 4px 18px -8px #bfa06f70;
+    }
+    .site-title {
+      font-weight: 700; font-size: 2em; letter-spacing: 1.5px;
+      color: #bfa06f;
+      text-shadow: 0 0 10px #dfd6c5, 0 1.5px 0 #715b2c55;
+      margin: 0;
+    }
+    nav a {
+      color: #ead197;
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      color: #bfa06f;
+    }
+    main {
+      flex: 1;
+      padding: 48px 15vw;
+      background: #fcf7ee;
+      border-radius: 24px;
+      max-width: 960px;
+      margin: 40px auto;
+      box-shadow: 0 4px 38px -20px #bfa06f70;
+      border: 1px solid #bfa06f26;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 2.8em;
+      margin-bottom: 12px;
+      color: #715528;
+      text-shadow: 0px 1.5px 0 #bfa06f19;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      font-size: 1.1em;
+      color: #5e451f;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 600;
+    }
+    input[type=text],
+    input[type=tel],
+    input[type=date],
+    select,
+    textarea {
+      margin-top: 6px;
+      padding: 10px 12px;
+      border: 1.5px solid #bfa06f80;
+      border-radius: 10px;
+      font-size: 1em;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    .btn {
+      background: linear-gradient(90deg, #715528 65%, #bfa06f 100%);
+      color: #fffbe9;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      cursor: pointer;
+      align-self: center;
+      width: 180px;
+      box-shadow: 0 3px 15px #bfa06f88;
+      transition: background 0.5s ease;
+    }
+    .btn:hover {
+      background: linear-gradient(90deg, #bfa06f 0%, #785929 100%);
+      box-shadow: 0 6px 20px #bfa06fcc;
+    }
+    .success-message, .error-message {
+      text-align: center;
+      font-weight: 700;
+      margin: 12px 0;
+      font-family: 'Cinzel', serif;
+      font-size: 1.1em;
+    }
+    .success-message {
+      color: #3a6b1b;
+      text-shadow: 0 0 5px #7db56d94;
+    }
+    .error-message {
+      color: #a93030;
+      text-shadow: 0 0 5px #d16060a6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="site-title">Sai Gajanan Lawns &amp; Banquet</span>
+    <nav>
+  <a href="#top">Home</a>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="booking.html">Booking</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+  </header>
+
+  <main>
+    <h1>Event Booking</h1>
+    <form id="booking-form">
+      <label>
+        Your Name
+        <input type="text" name="clientName" required />
+      </label>
+      <label>
+        Contact Number
+        <input type="tel" name="contactNumber" required pattern="^[0-9+\-\s]{7,15}$" />
+      </label>
+      <label>
+        Event Type
+        <select name="eventType" required>
+          <option value="" disabled selected>Select an event</option>
+          <option value="wedding">Wedding</option>
+          <option value="birthday">Birthday</option>
+          <option value="corporate">Corporate Event</option>
+          <option value="reception">Reception</option>
+        </select>
+      </label>
+      <label>
+        Choose Date(s)
+        <input type="date" name="eventDate" required />
+      </label>
+      <label>
+        Additional Details / Quote Request
+        <textarea name="message" placeholder="Please provide extra information if any"></textarea>
+      </label>
+      <button type="submit" class="btn">Submit Booking Request</button>
+      <div id="form-message"></div>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('booking-form');
+    const messageDiv = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const bookingData = {
+        clientName: formData.get('clientName'),
+        contactNumber: formData.get('contactNumber'),
+        eventType: formData.get('eventType'),
+        eventDates: [formData.get('eventDate')],
+        message: formData.get('message') || '',
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bookingData),
+        });
+
+        if (response.ok) {
+          messageDiv.textContent = 'Booking request submitted successfully. We will contact you soon.';
+          messageDiv.className = 'success-message';
+          form.reset();
+        } else {
+          const data = await response.json();
+          messageDiv.textContent = data.message || 'Failed to submit booking request.';
+          messageDiv.className = 'error-message';
+        }
+      } catch (error) {
+        messageDiv.textContent = 'Error connecting to server. Please try again later.';
+        messageDiv.className = 'error-message';
+      }
+    });
+  </script>
+</body>
+</html>

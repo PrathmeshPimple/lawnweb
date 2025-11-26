@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sai Gajanan Lawns</title>
+  <!-- Google Fonts for royal style -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Base styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f6eddc;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Splash (welcome) overlay styles */
+    #splash-overlay {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f9f9f9;
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: opacity 0.8s ease;
+      opacity: 1;
+    }
+    #splash-overlay.hidden,
+    #splash-overlay.fadeout {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Simple fade-in and scale-up text animation */
+    #splash-center-text {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 3em;
+      color: #9b7341;
+      background: #f9f9f9e6;
+      border-radius: 16px;
+      padding: 0 40px;
+      user-select: none;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeScaleIn 3s forwards;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    @keyframes fadeScaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+   #homepage-content {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  #homepage-content.visible {
+    opacity: 1;
+  }
+
+  /* Header and navigation */
+  header {
+    background: #21243a;
+    color: #ead197;
+    padding: 18px 38px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 3.5px solid #bfa06f;
+    box-shadow: 0 4px 18px -8px #bfa06f70;
+  }
+  .site-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: 1.5px;
+    color: #bfa06f;
+    margin: 0;
+    text-shadow: 0 0 10px #dfd6c5, 0 1.5px 0 #715b2c55;
+  }
+  header nav a {
+    color: #ead197;
+    margin: 0 15px;
+    font-family: 'Cinzel', serif;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.15em;
+    transition: color 0.17s;
+  }
+  header nav a:hover {
+    color: #bfa06f;
+    text-shadow: 0 0 8px #dfd6c5bb;
+  }
+  nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav a {
+  color: #ead197;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  font-size: 1.15em;
+  position: relative;
+  padding: 6px 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #bfa06f;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle::after {
+  font-size: 0.7em;
+  margin-left: 4px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #21243a;
+  border: 1px solid #bfa06f;
+  box-shadow: 0 8px 16px rgba(191, 160, 111, 0.5);
+  min-width: 180px;
+  border-radius: 5px;
+  z-index: 10000;
+  margin-top: 6px;
+  font-family: 'Cinzel', serif;
+}
+
+.dropdown-content a {
+  color: #f2d08c;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: normal;
+  font-size: 1em;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #bfa06f;
+  color: #21243a;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+  /* Hero section */
+  .hero {
+    background: linear-gradient(120deg, #634b2a80 30%, #bfa06f82 100%), url('hero.jpg') center/cover no-repeat;
+    height: 78vh;
+    display: flex; justify-content: center; align-items: center;
+    color: #fffbe9;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 14px 32px -19px #bfa06fcc;
+    border-bottom: 2.5px solid #bfa06f;
+  }
+  .hero h1 {
+    font-size: 3rem; margin-bottom: 0.6em; font-family: 'Cinzel', serif; letter-spacing: 1.5px;
+    color: #fffbe9; text-shadow: 0 0 8px #bfa06f90, 0 1.5px 0 #715b2c77;
+  }
+  .hero p {
+    font-size: 1.3em; margin-bottom: 1.0em; color: #ead197; font-family: inherit;
+  }
+  .btn {
+    background: linear-gradient(90deg, #715528 65%, #bfa06f 100%);
+    color: #fffbe9;
+    padding: 14px 32px;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    border: none;
+    box-shadow: 0 2.5px 9px 0 #bfa06f44;
+    margin-top: 12px;
+    letter-spacing: 1.2px;
+    transition: background 0.21s;
+  }
+  .btn:hover {
+    background: linear-gradient(90deg, #bfa06f 0%, #785929 100%);
+    color: #fffbe9;
+    box-shadow: 0 0 20px 0 #62412133;
+  }
+
+  section {
+    padding: 54px 14vw 54px 14vw;
+    text-align: center;
+    background: #fcf7ee;
+    border-radius: 20px;
+    margin: 36px auto;
+    box-shadow: 0 4px 38px -20px #bfa06f70;
+    max-width: 1200px;
+    border: 0.5px solid #bfa06f26;
+  }
+  section:nth-child(even) {
+    background: #f6eddc;
+  }
+
+  section h2 {
+    color: #715528;
+    font-family: 'Cinzel', serif; font-weight: 700;
+    margin-bottom: 16px;
+    font-size: 2em;
+    text-shadow: 0px 1.5px 0 #bfa06f19;
+  }
+  section p {
+    color: #5e451f;
+    font-size: 1.1em;
+    font-family: inherit;
+    margin-top: 0;
+  }
+
+  .services, .features {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+  .card {
+    width: 245px;
+    background: linear-gradient(110deg, #fffbe9 75%, #fbead1 100%);
+    padding: 25px 16px;
+    margin: 12px;
+    border-radius: 16px;
+    border: 1.7px solid #bfa06f82;
+    font-weight: bold;
+    box-shadow: 0 3px 19px -12px #ba935855;
+    color: #715528;
+    font-size: 1.17em;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1.2px;
+  }
+
+  .service-card {
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.16s, transform 0.16s;
+}
+  .service-card:hover {
+  box-shadow: 0 6px 28px 0 #bfa06f66;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.learn-more-icon {
+  position: absolute;
+  top: 11px;
+  right: 14px;
+  font-size: 0.83em;
+  color: #a1804f;
+  background: #f6eddc;
+  padding: 2px 8px;
+  border-radius: 8px;
+  opacity: 0;
+  font-family: 'Cinzel', serif;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+.service-card:hover .learn-more-icon {
+  opacity: 0.92;
+  color: #583c13;
+  font-weight: bold;
+  pointer-events: auto;
+}
+
+  .gallery-preview img {
+    width: 31%;
+    margin: 13px;
+    border-radius: 13px;
+    box-shadow: 0 3px 13px #bfa06f30;
+    border: 1.7px solid #bfa06f59;
+  }
+
+  footer {
+    background: #21243a;
+    color: #ead197;
+    padding: 24px 0;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1.05em;
+    border-top: 2px solid #bfa06f;
+    box-shadow: 0 -4px 22px -8px #bfa06f52;
+    letter-spacing: 1.1px;
+  }
+</style>
+</head>
+<body>
+  <!-- Splash overlay with simple animated text -->
+  <div id="splash-overlay">
+    <span id="splash-center-text">Sai Gajanan Lawns Welcomes you</span>
+  </div>
+
+  <!-- Main Homepage Content -->
+  <div id="homepage-content">
+    <header>
+  <span class="site-title">Sai Gajanan Lawns &amp; Banquet</span>
+  <nav>
+    <a href="#top" id="nav-home">Home</a>
+    <div class="dropdown">
+      <a href="servicepage.html" id="nav-services" class="dropdown-toggle">Services</a>
+      <div class="dropdown-content">
+        <a href="servicepage.html#weddings">Weddings</a>
+        <a href="servicepage.html#birthdays">Birthday Parties</a>
+        <a href="servicepage.html#corporate">Corporate Events</a>
+        <a href="servicepage.html#receptions">Receptions</a>
+      </div>
+    </div>
+    <a href="#gallery" id="nav-gallery">Gallery</a>
+    <a href="booking.html" id="nav-booking">Booking</a>
+    <a href="#contact" id="nav-contact">Contact</a>
+  </nav>
+</header>
+
+
+    <div class="hero">
+      <div>
+        <h1>Celebrate Your Special Moments With Us</h1>
+        <p>Weddings | Parties | Corporate Events</p>
+        <a href="booking.html" class="btn">Book Now</a>
+      </div>
+    </div>
+
+    <section>
+      <h2>Welcome to Sai Gajanan Lawns & Banquet</h2>
+      <p>We provide the perfect setting for weddings, parties, and corporate events with premium facilities and personalized services.</p>
+    </section>
+
+     <section>
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card service-card">
+      <span class="learn-more-icon">Learn More ℹ️</span>
+      💍 Weddings & Receptions
+    </div>
+    <div class="card service-card">
+      <span class="learn-more-icon">Learn More ℹ️</span>
+      🎉 Birthday & Celebrations
+    </div>
+    <div class="card service-card">
+      <span class="learn-more-icon">Learn More ℹ️</span>
+      🏢 Corporate Events
+    </div>
+    <div class="card service-card">
+      <span class="learn-more-icon">Learn More ℹ️</span>
+      🍽️ Catering & Decoration
+    </div>
+  </div>
+</section>
+
+    <section>
+      <h2>Why Choose Us?</h2>
+      <div class="features">
+        <div class="card">✔ Spacious Lawn & Banquet</div>
+        <div class="card">✔ Parking for 200+ Vehicles</div>
+        <div class="card">✔ Indoor & Outdoor Options</div>
+        <div class="card">✔ Professional Catering</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Gallery</h2>
+      <div class="gallery-preview">
+        <img src="event1.jpg" alt="Event 1" />
+        <img src="event2.jpg" alt="Event 2" />
+        <img src="event3.jpg" alt="Event 3" />
+      </div>
+      <a href="#" class="btn">View Full Gallery</a>
+    </section>
+
+    <section style="background:#e67e22;color:white;">
+      <h2>Plan Your Event With Us Today!</h2>
+      <a href="booking.html" class="btn" style="background:#2c3e50;">Request a Booking</a>
+    </section>
+
+    <footer>
+      <p>📍 Address: Sai Gajanan Lawns & Banquet, Akola, India</p>
+      <p>📞 +91 8830046722 | ✉ info@greenview.com</p>
+      <p>© 2025 Sai Gajanan Lawns & Banquet</p>
+    </footer>
+  </div>
+
+  <script>
+
+    window.onload = function () {
+      var splash = document.getElementById('splash-overlay');
+      var homepage = document.getElementById('homepage-content');
+      // Show splash text with fade-in and scale animation for 3s, then fade out splash and show homepage
+      setTimeout(function () {
+        splash.classList.add('hidden');
+        homepage.classList.add('visible');
+      }, 3500); // 3s animation + buffer
+    };
+
+    document.querySelectorAll('.service-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      window.location.href = 'service.html';
+    });
+  });
+  </script>
+</body>
+</html>
